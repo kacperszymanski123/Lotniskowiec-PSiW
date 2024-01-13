@@ -12,7 +12,7 @@ std::condition_variable ladowanieCV;
 std::condition_variable wylatywanieCV;
 
 const std::size_t  maxSamolotowN {5};
-const int liczbaZmianyPriorytetuK {3};
+const std::size_t liczbaZmianyPriorytetuK {3};
 std::vector<int> samolotyNaLotniskowcu {};
 
 
