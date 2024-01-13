@@ -48,14 +48,15 @@ int main(){
 
         while(true){
 
-
                 if(std::rand() % 2 == 0){
 
                         wszystkieSamolotyWatki.push_back(std::thread(ladowanie, lastID++));
+			
                 }else if (samolotyNaLotniskowcu.size() != 0){
 
-                        wszystkieSamolotyWatki.push_back(std::thread(wylatywanie, std::rand() % samolotyNaLotniskowcu.size() == 0));
-                }
+                        wszystkieSamolotyWatki.push_back(std::thread(wylatywanie, std::rand() % samolotyNaLotniskowcu.size()));
+                
+		}
         }
 
         for(std::thread& watekSamolotu : wszystkieSamolotyWatki) {
