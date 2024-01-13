@@ -5,7 +5,6 @@
 #include <vector>
 #include <time.h>
 #include <cstdlib>
-#include <unistd.h>
 
 std::mutex dostepDoPasa;
 std::condition_variable ladowanieCV;
@@ -48,8 +47,7 @@ int main(){
         std::srand(std::time(0));
 
         while(true){
-		
-		sleep(1);
+
 
                 if(std::rand() % 2 == 0){
 
@@ -61,8 +59,9 @@ int main(){
         }
 
         for(std::thread& watekSamolotu : wszystkieSamolotyWatki) {
-
+		if(watekSamolotu.joinable()){
                 watekSamolotu.join();
+		}
         }
 
 
