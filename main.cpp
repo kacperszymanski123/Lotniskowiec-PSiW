@@ -28,10 +28,10 @@ void ladowanie(int id){
 
 }
 
-void wylatywanie(int index){
+void wylatywanie(size_t index){
 
         std::unique_lock<std::mutex> zajeciePasa(dostepDoPasa);
-        wylatywanieCV.wait(zajeciePasa, []{return (samolotyNaLotniskowcu.size() > 0 && samolotyNaLotniskowcu.size() >= liczbaZmianyPriorytetuK);});
+        wylatywanieCV.wait(zajeciePasa, [index]{return (samolotyNaLotniskowcu.size() > index && samolotyNaLotniskowcu.size() >= liczbaZmianyPriorytetuK);});
 
         std::cout << "Samolot " << samolotyNaLotniskowcu.at(index) << " wylecial." << std::endl;
         samolotyNaLotniskowcu.erase(samolotyNaLotniskowcu.begin() + index);
@@ -68,4 +68,3 @@ int main(){
 
         return 0;
 }
-
