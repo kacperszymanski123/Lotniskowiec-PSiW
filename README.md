@@ -24,7 +24,8 @@ W funkcji main losujemy z jaką funkcją ma być utworzony wątek.
 W przypadku wylosowania funkcji wylatywanie losujemy który samolot ma wylecieć z lotniskowca.
 
 ## Kompilacja
-W celu kompilacji programu należy pobrać plik main.cpp, a następnie w terminalu wpisać poniższą komendę:
+W celu kompilacji programu należy pobrać plik main.cpp, a następnie w terminalu wpisać 
+poniższą komendę:
 g++ main.cpp -o Lotniskowiec -pthread  -Wall
 
 powstały plik Lotniskowiec należy uruchomić komendą:
