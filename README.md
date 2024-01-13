@@ -1,7 +1,7 @@
 # Lotniskowiec-PSiW
 program zaliczeniowy na PSiW
 
-## Temat zadania:
+## Temat zadania
 ### Lotniskowiec
 
 Na lotniskowcu lądują i startują samoloty. W tym celu potrzebują
@@ -15,7 +15,7 @@ zasoby).
 Źródło zadania: Weiss Z., Gruźlewski T.: Programowanie współbieżne i
 rozproszone w przykładach i zadaniach. WNT W-wa 1993.
 
-## Algorytm:
+## Algorytm
 
 W pliku main.cpp znajdują się dwie funkcję ladowanie i wylatywanie.
 Zapewniają one samodzielny dostęp do pasa dzięki użyciu mutexa dostepDoPasa.
