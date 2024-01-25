@@ -25,7 +25,6 @@ void ladowanie(int id){
 
         zajeciePasa.unlock();
         wylatywanieCV.notify_one();
-	ladowanieCV.notify_one();
 
 }
 
@@ -39,7 +38,6 @@ void wylatywanie(size_t index){
 
         zajeciePasa.unlock();
 	ladowanieCV.notify_one();
-        wylatywanieCV.notify_one();
 
 }
 
