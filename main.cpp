@@ -10,8 +10,9 @@ std::mutex dostepDoPasa;
 std::condition_variable ladowanieCV;
 std::condition_variable wylatywanieCV;
 
-const std::size_t  maxSamolotowN {5};
-const std::size_t liczbaZmianyPriorytetuK {3};
+const std::size_t  maxSamolotowN {10};
+const std::size_t liczbaZmianyPriorytetuK {5};
+const std::size_t maxLWatkow {50};
 std::vector<int> samolotyNaLotniskowcu {};
 
 
@@ -25,6 +26,7 @@ void ladowanie(int id){
 
         zajeciePasa.unlock();
         wylatywanieCV.notify_one();
+        ladowanieCV.notify_one();
 
 }
 
@@ -37,8 +39,8 @@ void wylatywanie(size_t index){
         samolotyNaLotniskowcu.erase(samolotyNaLotniskowcu.begin() + index);
 
         zajeciePasa.unlock();
-	ladowanieCV.notify_one();
-
+        wylatywanieCV.notify_one();
+        ladowanieCV.notify_one();
 }
 
 int main(){
@@ -58,12 +60,16 @@ int main(){
                         wszystkieSamolotyWatki.push_back(std::thread(wylatywanie, std::rand() % samolotyNaLotniskowcu.size()));
                 
 		}
+		if(wszystkieSamolotyWatki.size()>= maxLWatkow){
+			
+        		for(std::thread& watekSamolotu : wszystkieSamolotyWatki) {
+				if(watekSamolotu.joinable()){
+                		watekSamolotu.detach();
+			}
+		}
         }
 
-        for(std::thread& watekSamolotu : wszystkieSamolotyWatki) {
-		if(watekSamolotu.joinable()){
-                watekSamolotu.join();
-		}
+
         }
 
 
