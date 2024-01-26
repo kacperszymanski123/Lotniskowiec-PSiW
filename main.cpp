@@ -3,8 +3,6 @@
 #include <mutex>
 #include <condition_variable>
 #include <vector>
-#include <time.h>
-#include <cstdlib>
 
 std::mutex dostepDoPasa;
 std::condition_variable ladowanieCV;
