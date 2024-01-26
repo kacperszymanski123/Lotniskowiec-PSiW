@@ -12,9 +12,9 @@ std::condition_variable wylatywanieCV;
 
 const std::size_t  maxSamolotowN {10};
 const std::size_t liczbaZmianyPriorytetuK {5};
-const std::size_t maxLWatkow {50};
+const std::size_t maxLWatkow {500};
 std::vector<int> samolotyNaLotniskowcu {};
-
+std::size_t lWatkow {0};
 
 void ladowanie(int id){
 
@@ -60,11 +60,13 @@ int main(){
                         wszystkieSamolotyWatki.push_back(std::thread(wylatywanie, std::rand() % samolotyNaLotniskowcu.size()));
                 
 		}
-		if(wszystkieSamolotyWatki.size()>= maxLWatkow){
+		lWatkow ++;
+		if(lWatkow>= maxLWatkow){
 			
         		for(std::thread& watekSamolotu : wszystkieSamolotyWatki) {
 				if(watekSamolotu.joinable()){
                 		watekSamolotu.detach();
+				lWatkow --;
 			}
 		}
         }
